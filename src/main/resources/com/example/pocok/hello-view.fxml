@@ -25,7 +25,7 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label text="0">
+            <Label fx:id="lbKiir" text="0">
                <font>
                   <Font name="System Bold" size="64.0" />
                </font>
@@ -41,7 +41,7 @@
                </font>
             </Label>
             <Label maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Stop" />
+            <Button fx:id="tbGomb" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onKiBeClick" text="Stop" />
          </children>
       </VBox>
    </children>

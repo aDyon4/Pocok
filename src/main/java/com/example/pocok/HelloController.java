@@ -2,6 +2,7 @@ package com.example.pocok;
 
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,6 +10,8 @@ import javafx.scene.layout.Pane;
 
 public class HelloController {
     @FXML private Pane pnJatek;
+    @FXML private Label lbKiir;
+    @FXML private Button tbGomb;
 
     private Label[][] lt = new Label[6][6];
     private int[][] t = new int[6][6];
@@ -18,8 +21,10 @@ public class HelloController {
     private AnimationTimer timer;
     private long  most;
     private long tt = 0;
+    private boolean go = true;
 
     private int elkapott = 0;
+    private int kibujt = 1;
 
     @FXML private void initialize(){
         for(int s = 0;s<6;s++){
@@ -37,7 +42,7 @@ public class HelloController {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if(now > tt){
+                if(go && now > tt){
                     tt = now + 500_000_000; // ns
                     pockok();
                 }
@@ -79,9 +84,19 @@ public class HelloController {
         if(t[s][o] > 0){
             setKep(s, o, ures);
             elkapott++;
-            if(elkapott % 10 == 0) randomPocok(s, o);
+            if(elkapott % 10 == 0) { randomPocok(s, o); kibujt++; }
             randomPocok(s, o);
         }
+        kiir();
+    }
+
+    private void kiir(){
+        lbKiir.setText(kibujt + "");
+    }
+
+    @FXML private void onKiBeClick(){
+        if(go) { go = false; tbGomb.setText("Stop"); }
+        else { go = true ; tbGomb.setText("Start"); }
     }
 
     private void setKep(int s, int o, Image nev){
