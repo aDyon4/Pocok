@@ -19,6 +19,8 @@ public class HelloController {
     private long  most;
     private long tt = 0;
 
+    private int elkapott = 0;
+
     @FXML private void initialize(){
         for(int s = 0;s<6;s++){
             for(int o = 0;o<6;o++){
@@ -42,7 +44,6 @@ public class HelloController {
             }
         };
         timer.start();
-        randomPocok(0, 0);
         randomPocok(0, 0);
 
     }
@@ -75,8 +76,11 @@ public class HelloController {
     }
 
     private void katt(int s, int o){
-        if(t[s][o] == 1){
-
+        if(t[s][o] > 0){
+            setKep(s, o, ures);
+            elkapott++;
+            if(elkapott % 10 == 0) randomPocok(s, o);
+            randomPocok(s, o);
         }
     }
 
